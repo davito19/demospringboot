@@ -47,6 +47,11 @@ public class UsuarioController {
         return this.usuarioService.getByEmail(email);
     }
 
+    @GetMapping("/query2")
+    public ArrayList<UsuarioModel> getUserByName(@RequestParam("name") String name){
+        return this.usuarioService.getByName(name);
+    }
+
 
     @DeleteMapping(path = "/{id}")
     public String deleteById(@PathVariable("id") Long id) {
