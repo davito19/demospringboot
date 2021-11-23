@@ -24,27 +24,33 @@ public class UsuarioController {
 
     @GetMapping()
     public ArrayList<UsuarioModel> obtenerUsuario(){
-        return usuarioService.obtenerUsuarios();
+        return usuarioService.getUsuarios();
     }
 
     @PostMapping()
     public UsuarioModel guardarUsuario(@RequestBody UsuarioModel usuario){
-        return this.usuarioService.guardarUsuario(usuario);
+        return this.usuarioService.saveUsuario(usuario);
     }
 
     @GetMapping(path = "/{id}")
     public Optional<UsuarioModel> obtenerUsuarioPorId(@PathVariable("id") Long id) {
-        return this.usuarioService.obtenerPorId(id);
+        return this.usuarioService.getById(id);
     }
 
     @GetMapping("/query")
     public ArrayList<UsuarioModel> obtnenerUsuarioPorPrioridad(@RequestParam("prioridad") Integer prioridad){
-        return this.usuarioService.obtenerPorPrioridad(prioridad);
+        return this.usuarioService.getByPrioridad(prioridad);
     }
+
+    @GetMapping("/query1")
+    public ArrayList<UsuarioModel> getUserByEmail(@RequestParam("email") String email){
+        return this.usuarioService.getByEmail(email);
+    }
+
 
     @DeleteMapping(path = "/{id}")
     public String eliminarPorId(@PathVariable("id") Long id) {
-        boolean ok = this.usuarioService.eliminarUsuario(id);
+        boolean ok = this.usuarioService.deleteUsuario(id);
         if(ok) return "Se eliminó el usuario con id" + id;
         return "No pudo eliminar el usuario con id" + id;
     }

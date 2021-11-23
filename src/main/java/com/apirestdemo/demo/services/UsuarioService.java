@@ -14,23 +14,27 @@ public class UsuarioService {
     @Autowired
     UsuarioRepository usuarioRepository;
 
-    public ArrayList<UsuarioModel> obtenerUsuarios(){
+    public ArrayList<UsuarioModel> getUsuarios(){
         return (ArrayList<UsuarioModel>) usuarioRepository.findAll();
     }
 
-    public UsuarioModel guardarUsuario(UsuarioModel usuario){
+    public UsuarioModel saveUsuario(UsuarioModel usuario){
         return usuarioRepository.save(usuario);
     }
 
-    public Optional<UsuarioModel> obtenerPorId(Long id){
+    public Optional<UsuarioModel> getById(Long id){
         return usuarioRepository.findById(id);
     }
 
-    public ArrayList<UsuarioModel> obtenerPorPrioridad(Integer prioridad){
+    public ArrayList<UsuarioModel> getByPrioridad(Integer prioridad){
         return usuarioRepository.findByPrioridad(prioridad);
     }
 
-    public boolean eliminarUsuario(Long id){
+    public ArrayList<UsuarioModel> getByEmail(String email){
+        return usuarioRepository.findByemail(email);
+    }
+
+    public boolean deleteUsuario(Long id){
         try {
             usuarioRepository.deleteById(id);
             return true;
