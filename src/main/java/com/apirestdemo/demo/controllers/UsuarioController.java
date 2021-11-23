@@ -33,12 +33,12 @@ public class UsuarioController {
     }
 
     @GetMapping(path = "/{id}")
-    public Optional<UsuarioModel> obtenerUsuarioPorId(@PathVariable("id") Long id) {
+    public Optional<UsuarioModel> getUserById(@PathVariable("id") Long id) {
         return this.usuarioService.getById(id);
     }
 
     @GetMapping("/query")
-    public ArrayList<UsuarioModel> obtnenerUsuarioPorPrioridad(@RequestParam("prioridad") Integer prioridad){
+    public ArrayList<UsuarioModel> getUserByPrioridad(@RequestParam("prioridad") Integer prioridad){
         return this.usuarioService.getByPrioridad(prioridad);
     }
 
@@ -49,7 +49,7 @@ public class UsuarioController {
 
 
     @DeleteMapping(path = "/{id}")
-    public String eliminarPorId(@PathVariable("id") Long id) {
+    public String deleteById(@PathVariable("id") Long id) {
         boolean ok = this.usuarioService.deleteUsuario(id);
         if(ok) return "Se eliminó el usuario con id" + id;
         return "No pudo eliminar el usuario con id" + id;
